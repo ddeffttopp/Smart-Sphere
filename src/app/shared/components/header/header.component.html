@@ -1,0 +1,26 @@
+<header class="header">
+  <div class="container">
+    <button class="menu"><div class="menu-img"></div></button>
+
+    <div class="search">
+      <input type="text" class="search-input" placeholder="Search">
+      <button class="search-button"><div class="search-button-img"></div></button>
+    </div>
+
+    <div
+      class="auth-container"
+      *ngIf="isUserLogged; else userInfo"
+    >
+      <button class="auth-container-login">log</button>
+      <button class="auth-container-reg">reg</button>
+    </div>
+
+    <ng-template #userInfo>
+      <div class="user-info">
+        <button class="user-info-like">like</button>
+        <button class="user-info-basket">basket</button>
+        <button class="user-info-img">user</button>
+      </div>
+    </ng-template>
+  </div>
+</header>
