@@ -1,26 +1,42 @@
 <header class="header">
-  <div class="container">
-    <button class="menu"><div class="menu-img"></div></button>
 
-    <div class="search">
-      <input type="text" class="search-input" placeholder="Search">
-      <button class="search-button"><div class="search-button-img"></div></button>
-    </div>
+  <button
+    class="menu"
+    (click)="onToggleSidebar()"
+  >
+    <img src="/assets/icons/menu.svg" alt="Menu Icon">
+  </button>
 
-    <div
-      class="auth-container"
-      *ngIf="isUserLogged; else userInfo"
+  <div class="search">
+    <input type="text" class="search-input" placeholder="Search">
+    <button class="search-icon"></button>
+  </div>
+
+  <div class="user-info">
+
+    <button class="user-info-like">
+      <button class="user-info-like-icon"></button>
+      <span class="user-info-like-count">{{ likeCount }}</span>
+    </button>
+    <button class="user-info-basket">
+      <button class="info-basket"></button>
+      <span class="basket-count">{{ basketCount }}</span>
+    </button>
+
+    <button
+      class="user-info-logo"
+      *ngIf="isUserLogged else userInfo"
     >
-      <button class="auth-container-login">log</button>
-      <button class="auth-container-reg">reg</button>
-    </div>
+      <img src="/assets/icons/user.svg" alt="User Icon">
+    </button>
 
     <ng-template #userInfo>
-      <div class="user-info">
-        <button class="user-info-like">like</button>
-        <button class="user-info-basket">basket</button>
-        <button class="user-info-img">user</button>
-      </div>
+      <button class="user-info-avatar">
+        <img src="/assets/icons/avatarLogin.svg" alt="Avatar Icon">
+      </button>
     </ng-template>
+
   </div>
+
 </header>
+

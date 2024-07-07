@@ -1,1 +1,35 @@
-<p>product-card works!</p>
+<div class="card-container">
+
+  <div class="card-container-img">
+    <img
+      [src]="card.imgs[0]"
+      alt="Card Image"
+      class="card-container-img-image"
+    >
+    <button
+      (click)="toggleLike($event)"
+      [class.card-container-img-like-active]="isLiked"
+      class="card-container-img-like"
+    ></button>
+  </div>
+
+  <div class="card-info">
+    <div class="card-info-name">{{ card.name }}</div>
+    <div class="card-info-price">{{ card.price }}₴</div>
+  </div>
+
+  <div class="card-purchase">
+    <div class="card-purchase-stars">
+      <span
+        *ngFor="let _ of averageStars"
+        class="star">
+      </span>
+    </div>
+    <button
+      (click)="toggleBasket($event)"
+      [class.card-purchase-basket-active]="isBasket"
+      class="card-purchase-basket"
+    ></button>
+  </div>
+
+</div>

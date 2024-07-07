@@ -1,0 +1,45 @@
+<div class="sidebar">
+
+  <button
+    class="sidebar-user"
+    *ngIf="isUserLogged else userInfo"
+  >
+    <p class="sidebar-user-name">Diachenko Danil</p>
+    <button class="sidebar-user-avatar"></button>
+  </button>
+
+  <ng-template #userInfo>
+    <div class="sidebar-user">
+      <button class="sidebar-user-log-reg ">Login</button>
+      <button class="sidebar-user-log-reg">Register</button>
+    </div>
+  </ng-template>
+
+  <div class="sidebar-logo">
+    <button class="sidebar-logo-name">Назва магазину</button>
+    <button
+      class="sidebar-logo-close"
+      (click)="onCloseSidebar()"
+    >
+      <img src="/assets/icons/close.svg" alt="Close Icon">
+    </button>
+  </div>
+
+  <div
+    class="sidebar-catalog"
+    (click)="showSidebarCatalog()"
+  >
+    Каталог
+  </div>
+  <app-sidebar-catalog
+    class="sidebar-catalog-sub"
+    [class.visible]="isSidebarCatalogVisible"
+    (mouseleave)="hideSidebarCatalog()"
+  ></app-sidebar-catalog>
+
+</div>
+
+<div
+  class="overlay"
+  (click)="onCloseSidebar()"
+></div>

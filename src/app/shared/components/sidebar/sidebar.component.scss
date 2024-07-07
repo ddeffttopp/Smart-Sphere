@@ -1,0 +1,113 @@
+@import "src/assets/styles/colors.scss";
+
+:host {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  z-index: 999;
+  display: flex;
+  justify-content: start;
+}
+
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  background: white;
+  z-index: 1000;
+  transition: left 0.7s ease;
+  padding: 0 20px;
+
+  &-user {
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    width: 100%;
+    justify-content: center;
+    padding: 10px 0;
+    gap: 10px;
+
+    &-name {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    &-avatar {
+      width: 35px;
+      height: 35px;
+      background-image: url("/assets/icons/user.svg");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      border: none;
+      background-color: transparent;
+    }
+
+    &-log-reg {
+      padding: 0 15px;
+      background: $block-color;
+      border-radius: 3px;
+      border: 3px solid $chld-block-color;
+    }
+  }
+
+  &-logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-name {
+      background: none;
+      border: none;
+      font-size: 18px;
+    }
+
+    &-close {
+      width: 20px;
+      height: 20px;
+      background-color: transparent;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: $block-color;
+      }
+    }
+  }
+
+  &-catalog {
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+
+    &-sub {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 200px;
+      height: 100%;
+      background: lightgray;
+      display: none;
+      z-index: 1001;
+
+      &.visible {
+        display: block;
+      }
+    }
+  }
+}
+
+.container.blurred .sidebar {
+  left: 0;
+}

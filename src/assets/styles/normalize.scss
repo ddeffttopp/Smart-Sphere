@@ -8,9 +8,14 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
+* {
+  font-family: 'Vinnytsia Sans', sans-serif;
+}
+
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
+  background: #F4F2EF;
 }
 
 /* Sections
@@ -166,6 +171,7 @@ textarea {
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
+  cursor: pointer;
 }
 
 /**
