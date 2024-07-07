@@ -1,0 +1,104 @@
+@import "src/assets/styles/colors.scss";
+
+.card-container {
+  width: 340px;
+  cursor: pointer;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: white;
+
+    .card-container-img {
+      background-color: white;
+    }
+  }
+}
+
+.card-container-img {
+  height: 320px;
+  position: relative;
+  background: $chld-block-color;
+  display: flex;
+  align-items: center;
+  border-radius: 10px 10px 0 0;
+  padding: 0 20px;
+
+  &-image {
+    width: 300px;
+    height: 250px;
+  }
+
+  &-like {
+    width: 20px;
+    height: 20px;
+    mask-image: url("/assets/icons/like.svg");
+    mask-position: center;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    background-color: $text-color;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+
+    &-active {
+      mask-image: url("/assets/icons/isLike.svg");
+      background-color: red;
+    }
+  }
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 20px 0 20px;
+
+  &-name {
+    font-size: 18px;
+  }
+
+  &-price {
+    font-size: 16px;
+  }
+}
+
+.card-purchase {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px 20px 20px;
+
+  &-stars {
+    display: flex;
+    gap: 1px;
+
+    .star {
+      width: 15px;
+      height: 15px;
+      mask-image: url("/assets/icons/star.svg");
+      mask-position: center;
+      mask-size: contain;
+      mask-repeat: no-repeat;
+      background-color: gold;
+      border: none;
+    }
+  }
+
+  &-basket {
+    width: 25px;
+    height: 25px;
+    mask-image: url("/assets/icons/basket.svg");
+    mask-position: center;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    background-color: $text-color;
+    border: none;
+
+    &-active {
+      width: 25px;
+      height: 25px;
+      mask-image: url("/assets/icons/isBasket.svg");
+    }
+  }
+}

@@ -1,2 +1,11 @@
 @import "assets/styles/container.scss";
 @import "assets/styles/normalize.scss";
+@import "assets/styles/colors.scss";
+
+body.sidebar-visible {
+  overflow: hidden;
+}
+
+h1, h2, h3, h4, h5, p, a, button{
+  color: $text-color;
+}

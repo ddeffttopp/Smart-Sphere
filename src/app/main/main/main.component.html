@@ -1,8 +1,25 @@
-<app-header></app-header>
-<div class="main-container">
-  <div class="products">
-    <app-product-card
-    *ngFor="let card of productCards"
-    ></app-product-card>
+<div
+  class="container"
+  [class.blurred]="isSidebarVisible"
+>
+  <app-header
+    (toggleSidebar)="toggleSidebar()"
+    [isUserLogged]="isUserLogged"
+  ></app-header>
+
+  <app-sidebar
+    [class.visible]="isSidebarVisible"
+    (closeSidebar)="toggleSidebar()"
+    [isUserLogged]="isUserLogged"
+  ></app-sidebar>
+
+  <div class="main-container">
+    <div class="products">
+      <app-product-card
+        *ngFor="let card of productCards"
+        [card]="card"
+      ></app-product-card>
+    </div>
   </div>
 </div>
+
