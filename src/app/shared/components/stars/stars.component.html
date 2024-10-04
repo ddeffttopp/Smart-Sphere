@@ -1,0 +1,10 @@
+<div class="stars">
+  <span
+    *ngFor="let _ of starsService.createArray(starsService.getFilledStars(reviews.stars))"
+    class="star filled">
+  </span>
+  <span
+    *ngFor="let _ of starsService.createArray(starsService.getEmptyStars(reviews.stars))"
+    class="star empty">
+  </span>
+</div>

@@ -1,0 +1,67 @@
+<div class="container">
+  <div
+    *ngIf="(basketItems$ | async)?.length; else noBasket"
+    class="basket-content"
+  >
+    <div class="basket-content-header">
+      <p class="basket-content-header-text">Ваша карзина товаров</p>
+      <div
+        class="basket-content-header-clear"
+        (click)="clearCart()"
+      >
+        <p class="basket-content-header-clear-text">Удалить все товары</p>
+        <img
+          src="/assets/icons/delete.svg"
+          alt="Delete All"
+          class="delete-img"
+        >
+      </div>
+    </div>
+
+    <div class="basket-content-products">
+      <div
+        class="basket-content-products-product"
+        *ngFor="let cartItem of (basketItems$ | async)"
+      >
+        <ng-container *ngIf="(getProductDetails(cartItem.id) | async) as product">
+          <img
+            [src]="imageUrl+product.images[0]"
+            alt="Product Img"
+            class="basket-content-products-product-img"
+          >
+          <p class="basket-content-products-product-text">{{ product.name }}</p>
+          <app-number-count-button
+            [item]="cartItem"
+          ></app-number-count-button>
+          <p
+            class="basket-content-products-product-price">{{ (product.price * cartItem.quantity).toLocaleString('ru-RU') }}
+            ₴</p>
+          <button
+            (click)="removeItem(cartItem)"
+            class="remove-item-btn"
+          >
+            <img
+              src="/assets/icons/delete.svg"
+              alt="Delete All"
+              class="delete-img"
+            >
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noBasket>
+    <div class="no-basket-content">
+      <p class="no-basket-content-text">
+        Ваша корзина пуста. <br>Перейти в
+        <a
+          class="no-basket-content-text-ref"
+          href="#"
+        >
+          каталог товаров
+        </a>
+      </p>
+    </div>
+  </ng-template>
+</div>

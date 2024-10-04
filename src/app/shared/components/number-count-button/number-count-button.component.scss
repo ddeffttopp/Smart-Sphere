@@ -1,0 +1,43 @@
+@import "src/assets/styles/colors.scss";
+
+.block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-button {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid $global-black-60;
+    transition: ease-in-out .2s background;
+
+    &:hover {
+      background-color: $global-black-20;
+    }
+  }
+
+  &-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 17px;
+    width: 40px;
+    height: 40px;
+    color: #06295b;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: 1px solid $global-black-60;
+    background: transparent;
+    cursor: text;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

@@ -1,7 +1,14 @@
-.container.blurred .overlay {
-  display: block;
+.mat-drawer-content {
+  display: inline !important;
 }
 
-.visible {
-  left: 0;
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .content {
+    flex: 1 1 auto;
+  }
 }

@@ -1,0 +1,215 @@
+<div class="product">
+  <div class="padding">
+    <div class="product-image">
+      <swiper-container
+        fmSwiper #swiper
+        [config]="mainSwiperConfig"
+        class=" product-image-swiper"
+        thumbs-swiper=".swiper-pagination"
+      >
+
+        <swiper-slide
+          class="swiper-slide"
+          *ngFor="let slide of selectedCard?.images"
+        >
+          <img
+            [src]="imageUrl+slide"
+            alt="Card Image"
+            class="product-image-img"
+          >
+        </swiper-slide>
+
+      </swiper-container>
+
+      <swiper-container
+        fmSwiper #swiperThumbs
+        [config]="pagSwiperConfig"
+        class="swiper-pagination"
+      >
+
+        <swiper-slide
+          *ngFor="let slide of selectedCard?.images"
+          class="swiper-pagination-slide"
+        >
+          <img
+            [src]="imageUrl+slide"
+            alt="Pagination Image"
+            class="swiper-pagination-slide-img"
+            role="button"
+          >
+        </swiper-slide>
+
+      </swiper-container>
+
+    </div>
+
+    <div class="product-info" *ngIf="selectedCard">
+
+      <div class="product-info-buying info-block">
+        <p class="name">{{ selectedCard.name }}</p>
+
+        <app-average-stars [product]="selectedCard"></app-average-stars>
+
+        <div class="colors"
+        >
+          <p class="colors-text">Цвет: <span>{{ selectedCard.color }}</span></p>
+          <div class="colors-color">
+            <a class="item">
+              <span class="border active-border">
+                <span
+                  class="color"
+                  [style.background]="selectedCard?.cssColor"
+                ></span>
+              </span>
+            </a>
+            <a
+              class="item"
+              *ngFor="let color of selectedCard.otherIds"
+              [routerLink]="['/productPage', color.id, 'info']"
+            >
+              <span class="border" [ngClass]="{active: activeColor}">
+                <span class="color" [style.background]="color.cssColor"></span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="trade">
+          <div class="trade-text">
+            <p class="availability">Есть в наличии</p>
+            <p class="price">{{ selectedCard.price.toLocaleString('ru-RU') }} <span>₴</span></p>
+          </div>
+
+          <div class="trade-buttons">
+            <button
+              class="like"
+              (click)="toggleLike($event)"
+            >
+              <button
+                [class.like-buttons-active]="isLiked"
+                class="like-buttons"
+              ></button>
+            </button>
+          </div>
+
+          <button class="trade-buying"
+          >
+            <img
+              src="/assets/icons/buying.svg"
+              alt="Byuing Icon"
+              class="icon"
+            >
+            Купить
+          </button>
+        </div>
+      </div>
+
+      <div class="product-info-delivery info-block">
+        <button
+          class="button"
+          (click)="deliveryCity()"
+        >
+          <img
+            class="button-location"
+            src="/assets/icons/location.svg"
+            alt="Location Icon"
+          >
+          <p class="button-text">Доставка в <span>{{ this.cityService.oldSelectedCity }}</span></p>
+          <img
+            class="button-next"
+            src="/assets/icons/next.svg"
+            alt="Next Icon"
+          >
+        </button>
+
+        <div class="content">
+          <app-delivery-item
+            icon="self-delivery"
+            method="Самовывоз из магазинов SmartSphere"
+            date="Сегодня"
+            price="Бесплатно"
+            color="#00a046">
+            >
+          </app-delivery-item>
+          <app-delivery-item
+            icon="car-delivery"
+            method="В отделение 'Нова пошта'"
+            date="Завтра"
+            price="140 ₴">
+          </app-delivery-item>
+          <app-delivery-item
+            icon="man-delivery"
+            method="Курьером 'Нова пошта'"
+            date="Завтра"
+            price="280 ₴">
+          </app-delivery-item>
+        </div>
+      </div>
+
+      <div class="product-info-reviews info-block">
+        <div class="header">
+          <p>Отзывы: {{ commentsCount }}</p>
+        </div>
+
+        <div
+          class="reviews"
+          *ngFor="let reviews of selectedCard.comments.slice(0, 2)"
+          [routerLink]="['/productPage', selectedCard.id, 'reviews']"
+          fragment="'review-' + review._id"
+        >
+          <p class="name">{{ reviews.username | titlecase }}</p>
+
+          <app-stars
+            [product]="selectedCard"
+            [reviews]="reviews"
+          ></app-stars>
+
+          <p class="text">{{ reviews.text }}</p>
+        </div>
+
+        <button
+          class="footer"
+          [routerLink]="['/productPage', selectedCard.id, 'reviews']"
+        >
+          Смотреть все
+          <img
+            src="/assets/icons/all.svg"
+            alt="All Icon"
+            class="icon"
+          ></button>
+      </div>
+
+      <div class="product-info-delivery-detail info-block">
+        <div class="item item-border">
+          <img
+            src="/assets/icons/payment.svg"
+            alt="Payment Icon"
+            class="item-icon"
+          >
+          <p>
+            <span class="item-span">Оплата.</span> Оплата при получении товара. Оплата картой в отделении. Оплата по
+            счёту
+            VISA/Mastercard, GooglePay, ApplePay.
+          </p>
+        </div>
+        <div class="item">
+          <img
+            src="/assets/icons/guarantee.svg"
+            alt="Guarantee Icon"
+            class="item-icon"
+          >
+          <p>
+            <span class="item-span">Гарантия.</span>
+            {{ selectedCard.guarantee }} официальной гарантии от производителя
+            Обмен/возврат товара в течение 14 дней.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-product-alike
+    [products]="products"
+    [selectProduct]="selectedCard"
+  ></app-product-alike>
+</div>

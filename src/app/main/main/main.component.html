@@ -1,25 +1,23 @@
-<div
-  class="container"
-  [class.blurred]="isSidebarVisible"
->
-  <app-header
-    (toggleSidebar)="toggleSidebar()"
-    [isUserLogged]="isUserLogged"
-  ></app-header>
+<mat-sidenav-container class="example-sidenav-container">
+  <mat-sidenav #sidenav>
+    <app-sidebar
+      (toggleSidenav)="sidenav.toggle()"
+    ></app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content>
 
-  <app-sidebar
-    [class.visible]="isSidebarVisible"
-    (closeSidebar)="toggleSidebar()"
-    [isUserLogged]="isUserLogged"
-  ></app-sidebar>
+    <div class="container">
+      <div class="main-container">
+        <app-header
+          (toggleSidenav)="sidenav.toggle()"
+        ></app-header>
+        <div class="content">
 
-  <div class="main-container">
-    <div class="products">
-      <app-product-card
-        *ngFor="let card of productCards"
-        [card]="card"
-      ></app-product-card>
+          <router-outlet></router-outlet>
+
+        </div>
+        <app-footer></app-footer>
+      </div>
     </div>
-  </div>
-</div>
-
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,3 +1,5 @@
+@import "src/assets/styles/colors.scss";
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -37,6 +39,54 @@ main {
   display: block;
 }
 
+// Component stars
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  cursor: pointer;
+  z-index: 1000;
+
+  .star {
+    width: 15px;
+    height: 15px;
+    mask-image: url("/assets/icons/star.svg");
+    mask-position: center;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    border: none;
+  }
+
+  .filled {
+    background: gold;
+  }
+
+  .empty {
+    background-color: lightgray;
+  }
+
+  .count {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    text-decoration: none;
+    margin-left: 5px;
+    font-size: 16px;
+    line-height: 1;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &:hover {
+    .count {
+      color: $global-green-hov;
+    }
+  }
+}
+
 /**
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.
@@ -45,6 +95,14 @@ main {
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
+}
+
+h1, h2, h3, h4, h5, h6, hl, hxl, hxxl, p {
+  word-wrap: break-word;
+}
+
+p {
+  margin: 0 !important;
 }
 
 /* Grouping content
@@ -172,6 +230,7 @@ textarea {
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
   cursor: pointer;
+  border: none;
 }
 
 /**

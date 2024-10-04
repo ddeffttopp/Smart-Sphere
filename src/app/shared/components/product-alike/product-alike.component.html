@@ -1,0 +1,25 @@
+<div class="product-alike">
+  <p class="product-alike-header">Смотрите также</p>
+  <div class="product-alike-content">
+    <div
+      class="product"
+      [routerLink]="['/productPage', product.id, 'info']"
+      *ngFor="let product of randomProducts"
+    >
+
+      <div class="product-image">
+        <img
+          [src]="imageUrl+product.images[0]"
+          alt="Product Image"
+          class="img"
+        >
+      </div>
+
+      <p class="product-name">{{ product.name }}</p>
+
+      <app-average-stars [product]="product"></app-average-stars>
+
+      <p class="product-price">{{ product.price.toLocaleString('ru-RU') }} ₴</p>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,40 @@ body.sidebar-visible {
   overflow: hidden;
 }
 
-h1, h2, h3, h4, h5, p, a, button{
+h1, h2, h3, h4, h5, p, a, button {
   color: $text-color;
+  margin: 0;
+  padding: 0;
+}
+
+.container.blurred .overlay {
+  display: block;
+}
+
+.visible-sidebar {
+  left: 0 !important;
+}
+
+.visible-login {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.visible-register {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.mat-drawer {
+  top: auto !important;
+  bottom: auto !important;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

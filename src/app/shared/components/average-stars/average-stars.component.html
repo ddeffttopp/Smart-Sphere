@@ -1,0 +1,20 @@
+<div class="stars" [routerLink]="['/productPage', product.id, 'reviews']">
+    <span
+      *ngFor="let _ of starsService.createArray(averageStars.filledCount)"
+      class="star filled">
+    </span>
+  <span
+    *ngFor="let _ of starsService.createArray(averageStars.emptyCount)"
+    class="star empty">
+    </span>
+  <a
+    class="count"
+  >
+    <img
+      src="/assets/icons/message.svg"
+      alt="Message Icon"
+      class="icon"
+    >
+    {{ product.comments.length }}
+  </a>
+</div>

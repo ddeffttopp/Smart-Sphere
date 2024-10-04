@@ -1,0 +1,23 @@
+<div class="container">
+  <ul class="product-list">
+    <a
+      class="product-list-item link-visited"
+      [routerLink]="['info']"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >Все о товаре</a>
+    <a
+      class="product-list-item"
+      [routerLink]="['characteristics']"
+      routerLinkActive="active-link"
+    >Характеристики</a>
+    <a
+      class="product-list-item"
+      [routerLink]="['reviews']"
+      routerLinkActive="active-link"
+    >Отзывы</a>
+  </ul>
+
+  <router-outlet></router-outlet>
+
+</div>

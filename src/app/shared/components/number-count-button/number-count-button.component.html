@@ -1,0 +1,29 @@
+<div class="block">
+  <button
+    class="block-button"
+    (click)="onDecrement()"
+    style="border-radius: 4px 0 0 4px;"
+    [disabled]="count === 1"
+    [ngStyle]="{ 'opacity': count === 1 ? '0.5' : '1' }"
+  >-
+  </button>
+
+  <input
+    class="block-input input-bg"
+    type="number"
+    [(ngModel)]="count"
+    min="1"
+    step="1"
+    (ngModelChange)="onInputChange($event)"
+    (blur)="onBlur()"
+  >
+
+  <button
+    class="block-button"
+    (click)="onIncrement()"
+    style="border-radius: 0 4px 4px 0;"
+    [disabled]="count >= availableQuantity"
+    [ngStyle]="{ 'opacity': count >= availableQuantity ? '0.5' : '1' }"
+  >+
+  </button>
+</div>

@@ -1,0 +1,129 @@
+@import "src/assets/styles/colors.scss";
+
+.component {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 30px 40px;
+  border-radius: 10px;
+  width: 450px;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $global-black-10;
+    margin-left: -25px;
+    margin-right: -25px;
+    padding: 0 25px 10px;
+
+    .text {
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .close {
+      width: 25px;
+      height: 25px;
+      border: none;
+      mask-image: url("/assets/icons/close.svg");
+      mask-position: center;
+      mask-size: contain;
+      mask-repeat: no-repeat;
+      background-color: gray;
+
+      &:hover {
+        background-color: #f84147;
+      }
+    }
+  }
+
+  &-stars {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 20px;
+
+    .text {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .stars-container {
+      display: flex;
+      justify-content: space-between;
+
+      .star {
+        font-size: 4rem;
+        color: gray;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .star.filled {
+        color: gold;
+      }
+    }
+  }
+
+  &-comment {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+
+    .text {
+    }
+
+    .comment {
+      width: 100%;
+      background: $white;
+      border: 1px solid $global-black-20;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    .button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      border: 1px solid $global-black-20;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 16px;
+      transition: background .2s ease-in-out;
+    }
+
+    .cancel {
+      background: $global-black-5;
+      color: $global-black-60;
+
+      &:hover {
+        background: $global-black-10;
+      }
+    }
+
+    .submit {
+      background: $global-green;
+      color: $white;
+
+      &:hover {
+        background: $global-green-hov;
+      }
+
+      &:disabled {
+        background: $global-black-20;
+        cursor: default;
+      }
+    }
+  }
+}

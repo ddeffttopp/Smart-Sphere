@@ -1,0 +1,26 @@
+@import "src/assets/styles/colors.scss";
+
+.product-list {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  border-bottom: 1px solid $global-black-20;
+  padding: 0;
+
+  &-item {
+    cursor: pointer;
+    padding-bottom: 10px;
+    font-size: 14px;
+    text-decoration: none;
+
+    &:hover {
+      color: $global-green-hov;
+      box-shadow: inset 0 -2px 0 0 $global-green-hov;
+    }
+
+    &.active-link {
+      color: $global-green-hov;
+      box-shadow: inset 0 -2px 0 0 $global-green-hov;
+    }
+  }
+}

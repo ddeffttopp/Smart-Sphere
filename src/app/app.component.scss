@@ -1,0 +1,29 @@
+::ng-deep {
+  .mdc-tooltip__surface {
+    max-width: 280px !important;
+  }
+
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #f5f5f5 inset !important;
+  }
+
+  input:-webkit-autofill:hover {
+    -webkit-box-shadow: 0 0 0 30px #ececec inset !important;
+  }
+
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px #dbdbdb inset !important;
+  }
+
+  .mat-drawer-container {
+    background: #F4F2EF !important;
+  }
+
+  .mat-drawer-backdrop.mat-drawer-shown {
+    background-color: rgba(0, 0, 0, .32);
+  }
+}

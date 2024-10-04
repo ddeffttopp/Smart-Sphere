@@ -1,0 +1,42 @@
+<div class="component">
+  <div class="component-header">
+    <p>Характеристики {{ selectedCard.name }}</p>
+  </div>
+
+  <div class="component-content">
+    <div class="characteristic">
+      <div
+        class="group"
+        *ngFor="let group of selectedCard?.characteristic"
+      >
+        <h3 class="group-name">{{ group.groupName }}</h3>
+        <div
+          class="group-characteristics"
+          *ngFor="let item of group.characteristics"
+        >
+          <div class="info">
+            <div class="info-name">
+              <p>{{ item.name }}</p>
+            </div>
+            <p class="info-value">{{ item.value }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="attention">
+        <img
+          src="/assets/icons/attention.svg"
+          alt="Attention Icon"
+          class="attention-icon"
+        >
+        <p class="attention-text">Комплектація, зовнішній вигляд та характеристики товару можуть змінюватися виробником
+          без попередження. Рекомендуємо перевіряти їх на сайті виробника перед покупкою.</p>
+      </div>
+    </div>
+
+    <app-product-alike
+      [products]="products"
+      [selectProduct]="selectedCard"
+    ></app-product-alike>
+  </div>
+</div>
