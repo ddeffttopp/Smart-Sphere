@@ -1,0 +1,93 @@
+<div class="log-container">
+
+  <div class="log-container-header">
+    <p class="log-container-header-text">Вход</p>
+    <button
+      class="log-container-header-close"
+      (click)="onCloseLogin()"
+    >
+    </button>
+  </div>
+
+  <form
+    [formGroup]="formGroup"
+    class="log-container-auth"
+  >
+    <label
+      class="log-container-auth-label"
+      for="email"
+    > Почта
+    </label>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Введите вашу почту</mat-label>
+      <input
+        id="email"
+        matInput
+        placeholder="pat@example.com"
+        formControlName="email"
+        required
+      >
+      <mat-error *ngIf="formGroup.get('email')?.invalid">{{ getErrorMessage('email') }}</mat-error>
+    </mat-form-field>
+
+
+    <label
+      class="log-container-auth-label"
+      for="password"
+      style="margin-top: 20px"
+    > Пароль
+    </label>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Введите ваш пароль</mat-label>
+      <input
+        id="password"
+        matInput
+        formControlName="password"
+        required
+        [type]="hide ? 'password' : 'text'"
+      >
+      <img
+        class="hide-img"
+        [src]="hide ? './assets/icons/hideEye.svg' : './assets/icons/openEye.svg'"
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+      <mat-error *ngIf="formGroup.get('password')?.invalid">{{ getErrorMessage('password') }}</mat-error>
+    </mat-form-field>
+
+    <p
+      *ngIf="loginError"
+      class="text-error"
+    >Почта или пароль введены неверно</p>
+
+    <button
+      type="submit"
+      class="log-container-auth-submit"
+      (click)="submitForm()"
+    >Продолжить
+    </button>
+  </form>
+
+  <div class="log-container-divider">
+
+    <hr class="log-container-divider-hr">
+    <span
+      aria-hidden="true"
+      class="log-container-divider-text"
+    >или</span>
+
+  </div>
+
+  <div class="log-container-reg">
+    <button
+      class="log-container-reg-button"
+      (click)="onToggleRegister(); onCloseLogin()"
+    >Регистрация
+    </button>
+  </div>
+
+</div>

@@ -1,55 +1,27 @@
-import {Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SharedService } from "../../shared/services/shared.service";
+import { BasketService } from '../../shared/services/basket.service';
+import { Store } from '@ngrx/store';
+import { RestoreUser } from '../../core/store/actions/user.actions';
+import { GetProduct } from '../../core/store/actions/product.actions';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
-export class MainComponent {
-  public productCards = [
-    {
-      id: 1,
-      name: 'Ноутбук ASUS VivoBook 16',
-      imgs: ['assets/product-image/laptop1.png', 'assets/product-image/laptop2.png', 'assets/product-image/laptop3.png', 'assets/product-image/laptop4.png'],
-      price: 340,
-      characteristics: [
-        {
-          name: '',
-          value: 'ssss'
-        }
-      ],
-      review: [
-        {
-          userName: '',
-          userId: '',
-          text: '',
-          stars: 1
-        },
-        {
-          userName: '',
-          userId: '',
-          text: '',
-          stars: 2
-        },
-        {
-          userName: '',
-          userId: '',
-          text: '',
-          stars: 2
-        }
-      ],
-      other: [
-        {
-          color: 'red'
-        }
-      ]
-    }
-  ]
+export class MainComponent implements OnInit {
 
-  isSidebarVisible = false;
-  public isUserLogged: boolean = false;
+  constructor(
+    public sharedService: SharedService,
+    public basketService: BasketService,
+    public store: Store
+  ) {
+  }
 
-  toggleSidebar() {
-    this.isSidebarVisible = !this.isSidebarVisible;
+  ngOnInit() {
+    this.basketService.setInitialBasketData();
+    this.store.dispatch(new RestoreUser());
+    this.store.dispatch(new GetProduct());
   }
 }

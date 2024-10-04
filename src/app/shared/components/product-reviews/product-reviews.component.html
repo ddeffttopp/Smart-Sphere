@@ -1,0 +1,50 @@
+<div class="component">
+  <div class="component-header">
+    <p>Отзывы покупателей о {{ selectedCard?.name }}</p>
+  </div>
+
+  <div class="component-write">
+    <p class="text">Оставте свой отзыв о товаре</p>
+    <button
+      class="button"
+      (click)="onToggleWrite()"
+    >Написать отзыв
+    </button>
+  </div>
+
+  <div class="component-reviews">
+    <div
+      class="reviews"
+      *ngFor="let reviews of selectedCard?.comments"
+      [attr.id]="'review-' + reviews._id"
+    >
+      <div class="reviews-name">
+        {{ reviews.username | titlecase }}
+
+        <button
+          class="remove-item"
+          *ngIf="reviews.userId == userInfo.id && reviews._id"
+          (click)="onToggleDelete(selectedCard.id, reviews._id)"
+        >
+          <img
+            src="/assets/icons/delete.svg"
+            alt="Delete All"
+            class="delete-img"
+          >
+        </button>
+      </div>
+
+      <app-stars
+        [product]="selectedCard"
+        [reviews]="reviews"
+      ></app-stars>
+
+      <p class="text">{{ reviews.text }}</p>
+    </div>
+  </div>
+
+  <app-product-alike
+    [products]="products"
+    [selectProduct]="selectedCard"
+  ></app-product-alike>
+</div>

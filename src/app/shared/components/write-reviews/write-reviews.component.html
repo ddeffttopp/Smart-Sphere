@@ -1,0 +1,52 @@
+<div class="component">
+  <div class="component-header">
+    <p class="text">Выберите свой город</p>
+    <button
+      class="close"
+      (click)=" this.dialogRef.close()"
+    >
+    </button>
+  </div>
+
+  <div class="component-stars">
+    <p class="text">Оцените товар</p>
+
+    <div class="stars-container">
+      <span *ngFor="let star of stars"
+            class="star"
+            [class.filled]="isStarFilled(star)"
+            (click)="selectStars(star)"
+            (mouseover)="hoverStars(star)"
+            (mouseleave)="resetHover()">
+    ★
+  </span>
+    </div>
+  </div>
+
+  <form
+    class="component-comment"
+    [formGroup]="formGroup"
+  >
+    <p class="text">Коментарий</p>
+    <textarea
+      class="comment"
+      placeholder="Введите ваш комментарий"
+      rows="4"
+      formControlName="comment"
+    ></textarea>
+  </form>
+
+  <div class="component-buttons">
+    <button
+      class="cancel button"
+      (click)="dialogRef.close()"
+    >Отменить
+    </button>
+    <button
+      class="submit button"
+      [disabled]="!isFormValid()"
+      (click)="submitReview()"
+    >Оставить отзыв
+    </button>
+  </div>
+</div>

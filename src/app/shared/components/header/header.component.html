@@ -1,42 +1,76 @@
 <header class="header">
+  <div class="header-menu">
+    <button class="menu" (click)="toggleSidenav.emit()">
+      <img src="/assets/icons/menu.svg" alt="Menu Icon">
+    </button>
 
-  <button
-    class="menu"
-    (click)="onToggleSidebar()"
-  >
-    <img src="/assets/icons/menu.svg" alt="Menu Icon">
-  </button>
-
-  <div class="search">
-    <input type="text" class="search-input" placeholder="Search">
-    <button class="search-icon"></button>
+    <button
+      class="logo"
+      routerLink=""
+    >
+      <img
+        src="/assets/icons/logoIcon.svg"
+        alt="Logo Icon"
+        class="icon"
+      >
+      SmartSphere
+    </button>
   </div>
 
-  <div class="user-info">
+  <div class="header-search">
+    <input
+      type="text"
+      class="header-search-input"
+      placeholder="Search"
+    >
+    <button class="header-search-icon"></button>
+  </div>
 
-    <button class="user-info-like">
-      <button class="user-info-like-icon"></button>
-      <span class="user-info-like-count">{{ likeCount }}</span>
+  <div class="header-user-info">
+    <button class="header-user-info-like">
+      <button class="header-user-info-like-icon"></button>
+      <span class="header-user-info-like-count">{{ likeCount }}</span>
     </button>
-    <button class="user-info-basket">
+    <button class="header-user-info-basket" routerLink="productBasket">
       <button class="info-basket"></button>
       <span class="basket-count">{{ basketCount }}</span>
     </button>
 
-    <button
-      class="user-info-logo"
-      *ngIf="isUserLogged else userInfo"
-    >
-      <img src="/assets/icons/user.svg" alt="User Icon">
-    </button>
+    <ng-container *ngIf="isUserLogin$ | async; else loginState">
+      <button
+        class="header-user-info-logo"
+        [matMenuTriggerFor]="menu"
+        [ngStyle]="{backgroundColor}"
+      >
+        <div
+          *ngIf="userInfo.name.length"
+          class="header-user-info-logo-text"
+        >{{ userInfo.name[0] | uppercase }}
+        </div>
+      </button>
+      <mat-menu
+        #menu
+        class="user-navigation"
+      >
+        <div
+          class="user-menu"
+          (click)="$event.stopPropagation()"
+        >
+          <button class="user-menu-item">User Information</button>
+          <button class="user-menu-item">Settings</button>
+          <button
+            class="user-menu-item"
+            (click)="authService.signOut()"
+          >Sign out
+          </button>
+        </div>
+      </mat-menu>
+    </ng-container>
 
-    <ng-template #userInfo>
-      <button class="user-info-avatar">
+    <ng-template #loginState>
+      <button class="header-user-info-avatar" (click)="authService.loginForm()">
         <img src="/assets/icons/avatarLogin.svg" alt="Avatar Icon">
       </button>
     </ng-template>
-
   </div>
-
 </header>
-

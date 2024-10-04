@@ -1,0 +1,140 @@
+<div class="reg-container">
+  <div class="reg-container-header">
+
+    <p class="reg-container-header-text">Регистрация</p>
+
+    <button
+      class="reg-container-header-close"
+      (click)="onCloseRegister()"
+    >
+    </button>
+
+  </div>
+
+  <form
+    [formGroup]="formGroup"
+    class="reg-container-auth"
+  >
+    <label
+      class="reg-container-auth-label"
+      for="name"
+    > Имя
+      <img
+        class="query-image"
+        src="./assets/icons/query.svg"
+        alt="Query Img"
+        mat-raised-button
+        matTooltip="Имя должно состоять из латинских букв и быть не короче 5 символов."
+        matTooltipPosition="right"
+        [matTooltipClass]="'custom-tooltip'"
+      >
+    </label>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Введите ваше имя</mat-label>
+      <input
+        id="name"
+        matInput
+        placeholder="User1991"
+        formControlName="username"
+        required
+      >
+      <mat-error *ngIf="formGroup.get('username')?.invalid">{{ getErrorMessage('username') }}</mat-error>
+    </mat-form-field>
+
+    <label
+      class="reg-container-auth-label"
+      for="email"
+      style="margin-top: 20px"
+    > Почта
+      <img
+        class="query-image"
+        src="./assets/icons/query.svg"
+        alt="Query Img"
+        mat-raised-button
+        matTooltip="Введите ваш действительный адрес электронной почты."
+        matTooltipPosition="right"
+        [matTooltipClass]="'custom-tooltip'"
+      >
+    </label>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Введите вашу почту</mat-label>
+      <input
+        id="email"
+        matInput
+        placeholder="pat@example.com"
+        formControlName="email"
+        required
+      >
+      <mat-error *ngIf="formGroup.get('email')?.invalid">{{ getErrorMessage('email') }}</mat-error>
+    </mat-form-field>
+
+    <label
+      class="reg-container-auth-label"
+      for="password"
+      style="margin-top: 20px"
+    > Пароль
+      <img
+        class="query-image"
+        src="./assets/icons/query.svg"
+        alt="Query Img"
+        mat-raised-button
+        matTooltip="Пароль должен содержать не менее 8 символов, включая латинские буквы и цифры."
+        matTooltipPosition="right"
+        [matTooltipClass]="'custom-tooltip'"
+      >
+    </label>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Введите ваш пароль</mat-label>
+      <input
+        id="password"
+        matInput
+        formControlName="password"
+        required
+        [type]="hide ? 'password' : 'text'"
+      >
+      <img
+        class="hide-img"
+        [src]="hide ? './assets/icons/hideEye.svg' : './assets/icons/openEye.svg'"
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+      <mat-error *ngIf="formGroup.get('password')?.invalid">{{ getErrorMessage('password') }}</mat-error>
+    </mat-form-field>
+
+    <p
+      *ngIf="regError"
+      class="text-error"
+    >{{ regError }}</p>
+
+    <button
+      type="submit"
+      class="reg-container-auth-submit"
+      (click)="submitForm()"
+    >Продолжить
+    </button>
+  </form>
+
+  <div class="reg-container-divider">
+
+    <hr class="reg-container-divider-hr">
+    <span
+      aria-hidden="true"
+      class="reg-container-divider-text"
+    >или</span>
+
+  </div>
+
+  <div class="reg-container-reg">
+    <button
+      class="reg-container-reg-button"
+      (click)="onToggleLogin(); onCloseRegister()"
+    >Войти
+    </button>
+  </div>
+
+</div>

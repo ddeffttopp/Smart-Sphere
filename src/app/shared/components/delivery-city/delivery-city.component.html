@@ -1,0 +1,81 @@
+<div class="component">
+
+  <div class="component-header">
+    <p class="text">Выберите свой город</p>
+    <button
+      class="close"
+      (click)="dialogRef.close()"
+    >
+    </button>
+  </div>
+
+  <p class="component-intro">
+    <img
+      src="/assets/icons/car-delivery.svg"
+      alt="Car Delivery"
+      class="icon"
+    >
+    Доставим ваш заказ в любой уголок Украины!
+  </p>
+
+  <ul class="component-popular">
+    <li
+      class="item"
+      *ngFor="let city of popularCities"
+      [class.active]="city === selectedPopularCity"
+      (click)="selectPopularCity(city)"
+    >{{ city }}
+    </li>
+  </ul>
+
+  <p class="component-label">Введите населенный пункт Украины</p>
+  <div
+    class="component-form"
+    (clickOutside)="showCityList = false"
+  >
+    <input
+      type="text"
+      [formControl]="cityFormControl"
+      (focus)="showCityList = true"
+      placeholder="Выберите свой город"
+      class="custom-input">
+    <ul
+      *ngIf="showCityList && filteredCities.length"
+      class="city-list"
+    >
+      <li
+        *ngFor="let city of filteredCities.slice(0, 20)"
+        (click)="selectCity(city)"
+        class="city-item"
+      >
+        {{ city.Description }}
+      </li>
+    </ul>
+  </div>
+
+  <p
+    *ngIf="showCityList && !filteredCities.length"
+    class="error-message"
+  >
+    Город не найден
+  </p>
+
+  <div class="component-buttons">
+    <button
+      class="home-page"
+      routerLink=""
+      (click)="this.dialogRef.close()"
+    >Перейти на главную
+    </button>
+    <button
+      class="select"
+      [disabled]="!isCityChanged"
+      (click)="selectDelivery()"
+    >Применить
+    </button>
+  </div>
+
+  <div class="component-footer">Укажите свой город, чтобы получать актуальные данные о наличии товаров, их стоимости и
+    возможностях доставки. Это упростит ваш шопинг и сэкономит время!
+  </div>
+</div>

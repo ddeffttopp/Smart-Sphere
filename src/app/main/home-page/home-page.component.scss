@@ -1,0 +1,10 @@
+@import "src/assets/styles/colors.scss";
+
+.main-container {
+
+  .products {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}

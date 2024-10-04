@@ -4,26 +4,49 @@
   padding: 20px 0 40px 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
-  .menu {
+  &-menu {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
+    gap: 10px;
 
-    img {
-      width: 30px;
-      height: 30px;
+    .menu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      padding: 5px;
+      border-radius: 5px;
+      background: transparent;
+      gap: 10px;
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+
+      &:hover {
+        background: white;
+      }
     }
 
-    &:hover {
-      background: white;
+    .logo {
+      display: flex;
+      align-items: center;
+      background: none;
+      gap: 5px;
+      font-size: 18px;
+
+      .icon {
+        width: 30px;
+        height: 30px;
+      }
     }
   }
 
-  .search {
+  &-search {
     position: relative;
     display: flex;
     align-items: center;
@@ -50,7 +73,7 @@
     }
   }
 
-  .user-info {
+  &-user-info {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -138,6 +161,27 @@
       justify-content: center;
       align-items: center;
       padding: 5px;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+
+      &-text {
+        font-size: 20px;
+        font-weight: bold;
+        color: $white;
+      }
+
+      &:hover {
+        background: white;
+      }
+    }
+
+    &-avatar {
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
       border-radius: 5px;
 
       img {
@@ -149,15 +193,42 @@
         background: white;
       }
     }
+  }
+}
 
-    &-avatar {
-      width: 35px;
-      height: 35px;
-      border: none;
+.example-sidenav-container {
+  flex: 1;
+}
 
-      &:hover {
-        background: white;
+.example-is-mobile .example-sidenav-container {
+  flex: 1 0 auto;
+}
+
+::ng-deep {
+  .user-navigation {
+    margin-top: 5px !important;
+    margin-left: -50px !important;
+    padding: 0;
+
+    .user-menu {
+      display: flex;
+      flex-direction: column;
+
+      &-item {
+        min-width: 150px;
+        border: none;
+        background: $white;
+        padding: 10px;
+        text-align: left;
+
+        &:hover {
+          background: $global-black-10;
+        }
       }
     }
+  }
+
+  .mat-mdc-menu-content {
+    padding: 0 !important;
   }
 }

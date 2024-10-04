@@ -1,45 +1,91 @@
-<div class="sidebar">
+<div class="sidebar-container">
 
-  <button
-    class="sidebar-user"
-    *ngIf="isUserLogged else userInfo"
-  >
-    <p class="sidebar-user-name">Diachenko Danil</p>
-    <button class="sidebar-user-avatar"></button>
-  </button>
-
-  <ng-template #userInfo>
-    <div class="sidebar-user">
-      <button class="sidebar-user-log-reg ">Login</button>
-      <button class="sidebar-user-log-reg">Register</button>
-    </div>
-  </ng-template>
-
-  <div class="sidebar-logo">
-    <button class="sidebar-logo-name">Назва магазину</button>
-    <button
-      class="sidebar-logo-close"
-      (click)="onCloseSidebar()"
+  <div class="sidebar">
+    <div
+      class="sidebar-user"
+      *ngIf="isUserLogin$ | async; else loginState"
     >
-      <img src="/assets/icons/close.svg" alt="Close Icon">
-    </button>
+      <p class="sidebar-user-name">{{ userInfo.name | titlecase }}</p>
+      <button
+        class="sidebar-user-logo"
+        [matMenuTriggerFor]="menu"
+        [ngStyle]="{backgroundColor}"
+      >
+        <div
+          *ngIf="userInfo.name.length"
+          class="sidebar-user-logo-text"
+        >{{ userInfo.name[0] | uppercase }}
+        </div>
+      </button>
+      <mat-menu
+        #menu
+        class="user-navigation"
+      >
+        <div
+          class="user-menu"
+          (click)="$event.stopPropagation()"
+        >
+          <button class="user-menu-item">User Information</button>
+          <button class="user-menu-item">Settings</button>
+          <button
+            class="user-menu-item"
+            (click)="authService.signOut()"
+          >Sign out
+          </button>
+        </div>
+      </mat-menu>
+    </div>
+
+    <ng-template #loginState>
+      <div class="sidebar-user">
+        <button
+          class="sidebar-user-log-reg"
+          (click)="authService.loginForm()"
+        >Login
+        </button>
+        <button
+          class="sidebar-user-log-reg"
+          (click)="authService.registerForm()"
+        >Register
+        </button>
+      </div>
+    </ng-template>
+
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-text">
+        <img
+          src="/assets/icons/logoIcon.svg"
+          alt="Logo Icon"
+          class="icon"
+        >
+        SmartSphere
+      </div>
+      <button class="sidebar-logo-close" (click)="toggleSidenav.emit()">
+        <img src="/assets/icons/close.svg" alt="Close Icon">
+      </button>
+    </div>
+
+    <div
+      class="sidebar-catalog"
+      (mouseenter)="onMouseEnter()"
+      (mouseleave)="onMouseLeave()"
+    >
+      <p class="sidebar-catalog-text">Каталог</p>
+      <img
+        src="/assets/icons/catalog.svg"
+        class="sidebar-catalog-img"
+      >
+    </div>
   </div>
 
   <div
-    class="sidebar-catalog"
-    (click)="showSidebarCatalog()"
+    *ngIf="showCatalog"
+    class="sidebar-catalog-content"
+    (mouseenter)="onCatalogMouseEnter()"
+    (mouseleave)="onCatalogMouseLeave()"
   >
-    Каталог
+    <app-sidebar-catalog></app-sidebar-catalog>
   </div>
-  <app-sidebar-catalog
-    class="sidebar-catalog-sub"
-    [class.visible]="isSidebarCatalogVisible"
-    (mouseleave)="hideSidebarCatalog()"
-  ></app-sidebar-catalog>
+
 
 </div>
-
-<div
-  class="overlay"
-  (click)="onCloseSidebar()"
-></div>
