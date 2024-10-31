@@ -8,7 +8,14 @@ export const productReducers = (state = initialProductState, action: ProductActi
       return {
         ...state,
         product: products,
+        // product: products.slice(0, 5),
         productCount: productCount,
+      };
+    }
+    case EProductActions.GetSingleProduct: {
+      return {
+        ...state,
+        product: action.product,
       };
     }
     case EProductActions.AddCommentSuccess: {

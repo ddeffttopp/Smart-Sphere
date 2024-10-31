@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IProduct } from '../../../core/interfaces/product.interface';
 import { environments } from '../../../../environments';
 
@@ -7,14 +7,21 @@ import { environments } from '../../../../environments';
   templateUrl: './product-alike.component.html',
   styleUrls: ['./product-alike.component.scss']
 })
-export class ProductAlikeComponent implements OnInit {
-  @Input() selectProduct!: IProduct;
-  @Input() products!: IProduct[];
+export class ProductAlikeComponent {
+  private _selectProduct!: IProduct;
+
+  @Input() set selectProduct(v: IProduct) {
+    this._selectProduct = v;
+    this.filterAndRandomizeProducts();
+  };
+
+  @Input() products: IProduct[] = [];
+
   imageUrl = `${environments.apiUrl}${environments.imageUrl}`;
   randomProducts: IProduct[] = [];
 
-  ngOnInit(): void {
-    this.filterAndRandomizeProducts();
+  get selectProduct(): IProduct {
+    return this._selectProduct;
   }
 
   filterAndRandomizeProducts(): void {
@@ -25,6 +32,6 @@ export class ProductAlikeComponent implements OnInit {
 
   // Функция для перемешивания массива
   shuffleArray(array: IProduct[]): IProduct[] {
-    return array.sort(() => Math.random() - 0.5);
+    return array;
   }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedService } from "../../shared/services/shared.service";
 import { BasketService } from '../../shared/services/basket.service';
 import { Store } from '@ngrx/store';
 import { RestoreUser } from '../../core/store/actions/user.actions';
@@ -13,7 +12,6 @@ import { GetProduct } from '../../core/store/actions/product.actions';
 export class MainComponent implements OnInit {
 
   constructor(
-    public sharedService: SharedService,
     public basketService: BasketService,
     public store: Store
   ) {

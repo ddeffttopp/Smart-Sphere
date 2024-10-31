@@ -28,6 +28,7 @@ import { AverageStarsComponent } from './components/average-stars/average-stars.
 import { StarsComponent } from './components/stars/stars.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { WriteReviewsComponent } from './components/write-reviews/write-reviews.component';
+import { HeaderSearchComponent } from './components/header-search/header-search.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { WriteReviewsComponent } from './components/write-reviews/write-reviews.
     AverageStarsComponent,
     StarsComponent,
     WriteReviewsComponent,
+    HeaderSearchComponent,
   ],
   imports: [
     CommonModule,

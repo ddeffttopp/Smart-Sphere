@@ -15,6 +15,7 @@ export class BasketService {
   public basketItemsArray = new BehaviorSubject<any[]>([]);
   public products: IProduct[] = [];
 
+
   constructor(public store: Store<IAppState>) {
     this.store.select(selectProducts).pipe(untilDestroyed(this)).subscribe((products) => {
       this.products = products;

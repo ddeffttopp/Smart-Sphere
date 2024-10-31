@@ -13,7 +13,8 @@ export interface IProduct {
   color: string;
   cssColor: string;
   comments: IProductComment[];
-  guarantee: string
+  guarantee: string;
+  productType: string;
 }
 
 export type IProductResponse = [IProduct[], number];

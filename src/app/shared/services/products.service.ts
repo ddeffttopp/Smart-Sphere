@@ -12,7 +12,7 @@ export class ProductsService {
   constructor(private http: HttpClient) {
   }
 
-  public getProducts(): Observable<IProductResponse> {
-    return this.http.get(`${environments.apiUrl}/products`) as Observable<IProductResponse>
+  public getProducts(params?: any): Observable<IProductResponse> {
+    return this.http.get(`${environments.apiUrl}/products`, { params: params || {} }) as Observable<IProductResponse>
   }
 }
