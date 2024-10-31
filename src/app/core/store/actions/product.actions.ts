@@ -5,6 +5,7 @@ import { IProductComment } from '../../interfaces/comment.interface';
 export enum EProductActions {
   GetProduct = "[Product] Get Product",
   GetProductSuccess = "[Product] Get Product Success",
+  GetSingleProduct = "[Product] Get SingleProduct",
   AddComment = "[Product] Add Comment",
   AddCommentSuccess = "[Product] Add Comment Success",
   DeleteComment = "[Product] Delete Comment",
@@ -13,7 +14,6 @@ export enum EProductActions {
 
 export class GetProduct implements Action {
   public readonly type = EProductActions.GetProduct;
-
 }
 
 export class GetProductSuccess implements Action {
@@ -22,6 +22,13 @@ export class GetProductSuccess implements Action {
   constructor(
     public response: IProductResponse
   ) {
+  }
+}
+
+export class GetSingleProduct implements Action {
+  public readonly type = EProductActions.GetSingleProduct;
+
+  constructor(public product: IProductResponse) {
   }
 }
 
@@ -56,6 +63,7 @@ export class DeleteCommentSuccess implements Action {
 export type ProductActions =
   GetProduct
   | GetProductSuccess
+  | GetSingleProduct
   | AddComment
   | AddCommentSuccess
   | DeleteComment

@@ -1,0 +1,54 @@
+<div class="header-search">
+  <div class="search-panel">
+    <input
+      type="text"
+      class="header-search-input"
+      placeholder="Search"
+      [formControl]="searchFormControl"
+      (focus)="onFocusInput()"
+    >
+    <button
+      class="header-search-delete"
+      *ngIf="searchFormControl.value"
+      (click)="searchFormControl.setValue('')"
+    ></button>
+    <img
+      src="/assets/icons/search.svg"
+      alt="Search Img"
+      class="header-search-icon"
+    >
+  </div>
+
+  <ul
+    *ngIf="showProductList && searchProducts.length"
+    class="header-search-list"
+  >
+    <li
+      *ngFor="let product of searchProducts.slice(0, 10)"
+      class="item"
+      (click)="onToggleProduct()"
+      [routerLink]="['/productPage', product.id, 'info']"
+    >
+      <div class="item-image">
+        <img
+          class="img"
+          [src]="imageUrl + product.images[0]"
+          alt="Product Image"
+        >
+        <span class="color" [style.background]="product.cssColor"></span>
+        <p class="name">{{ product.name }}</p>
+      </div>
+      <p class="price">
+        {{ product.price.toLocaleString('ru-RU') }}
+        <span>₴</span>
+      </p>
+    </li>
+  </ul>
+</div>
+
+<div
+  class="blur-overlay"
+  (click)="showProductList = false; isInputActive = false"
+  *ngIf="showProductList && searchProducts.length"
+  [ngClass]="{ 'blur-overlay-visible': showProductList && searchProducts.length }"
+></div>

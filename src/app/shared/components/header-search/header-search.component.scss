@@ -1,0 +1,129 @@
+@import "src/assets/styles/colors.scss";
+
+.header-search {
+  position: relative;
+  z-index: 10;
+  max-width: 600px;
+
+  .search-panel {
+    display: flex;
+    align-items: center;
+  }
+
+  &-input {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    padding: 0 55px 0 10px;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.2s ease-in-out;
+    cursor: text;
+
+    &:hover {
+      background: $global-black-5;
+    }
+  }
+
+  &-delete {
+    position: absolute;
+    right: 40px;
+    width: 25px;
+    height: 25px;
+    border: none;
+    mask-image: url('/assets/icons/close.svg');
+    mask-position: center;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    background-color: $global-black-60;
+
+    &:hover {
+      background: $global-red;
+    }
+  }
+
+  &-icon {
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 0 5px 5px 0;
+    background: $global-black-20;
+  }
+
+  &-list {
+    position: absolute;
+    width: 100%;
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid $global-black-20;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 20px 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    z-index: 11;
+    background: $white;
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 20px;
+      cursor: pointer;
+      border-bottom: 1px solid $global-black-20;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: $global-black-5;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &-image {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .img {
+          max-width: 40px;
+          max-height: 40px;
+          height: auto;
+        }
+
+        .color {
+          width: 10px;
+          height: 10px;
+          border: 2px solid rgba(34, 31, 31, .2);
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+}
+
+.blur-overlay {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  //visibility: hidden;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.32);
+  transition: opacity 1s ease;
+
+  &.blur-overlay-visible {
+    opacity: 1;
+    //visibility: visible;
+  }
+}
+

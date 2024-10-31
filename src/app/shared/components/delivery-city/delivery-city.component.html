@@ -38,7 +38,8 @@
       [formControl]="cityFormControl"
       (focus)="showCityList = true"
       placeholder="Выберите свой город"
-      class="custom-input">
+      class="custom-input"
+    >
     <ul
       *ngIf="showCityList && filteredCities.length"
       class="city-list"

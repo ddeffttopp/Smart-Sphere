@@ -9,6 +9,7 @@ import {
   ProductCharacteristicsComponent
 } from "../shared/components/product-characteristics/product-characteristics.component";
 import { ProductBasketComponent } from './product-basket/product-basket.component';
+import { ProductResolver } from '../shared/resolvers/product.resolver';
 
 enum MainRoutingPaths {
   Main = '',
@@ -34,6 +35,7 @@ const routes: Routes = [
       {
         path: MainRoutingPaths.ProductPage,
         component: ProductPageComponent,
+        resolve: { product: ProductResolver },
         children: [
           {
             path: '',

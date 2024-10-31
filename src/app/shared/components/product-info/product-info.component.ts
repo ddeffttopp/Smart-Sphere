@@ -47,9 +47,6 @@ export class ProductInfoComponent implements OnInit {
     public dialog: MatDialog,
     public cityService: CityService,
   ) {
-  }
-
-  ngOnInit() {
     this.route.parent?.paramMap.pipe(
       switchMap(params => {
         const idParam = params.get('id');
@@ -68,7 +65,9 @@ export class ProductInfoComponent implements OnInit {
       this.commentsText = this.starsService.getReviewWord(this.commentsCount);
       this.updateStars();
     });
+  }
 
+  ngOnInit() {
     this.store.select(selectProducts).pipe(untilDestroyed(this)).subscribe((products) => {
       this.products = products;
     })

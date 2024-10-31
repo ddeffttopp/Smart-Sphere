@@ -28,7 +28,6 @@ export class DeliveryCityComponent implements OnInit {
         this.cities = response.data;
         this.filteredCities = this.cities;
       });
-    console.log(this.cities)
 
     this.cityFormControl.valueChanges
       .subscribe(value => {
