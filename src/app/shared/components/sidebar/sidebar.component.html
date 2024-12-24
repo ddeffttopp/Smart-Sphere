@@ -69,6 +69,8 @@
       class="sidebar-catalog"
       (mouseenter)="onMouseEnter()"
       (mouseleave)="onMouseLeave()"
+      (click)="toggleSidenav.emit()"
+      routerLink="/catalogPage"
     >
       <p class="sidebar-catalog-text">Каталог</p>
       <img
@@ -84,7 +86,9 @@
     (mouseenter)="onCatalogMouseEnter()"
     (mouseleave)="onCatalogMouseLeave()"
   >
-    <app-sidebar-catalog></app-sidebar-catalog>
+    <app-sidebar-catalog
+      [toggleSidenav]="toggleSidenav"
+    ></app-sidebar-catalog>
   </div>
 
 

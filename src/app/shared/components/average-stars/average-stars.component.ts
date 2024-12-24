@@ -1,9 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { StarsService } from '../../services/stars.service';
-import { selectProducts } from '../../../core/store/selectors/product.selectors';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Store } from '@ngrx/store';
-import { IAppState } from '../../../core/store/state/app.state';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { IProduct } from '../../../core/interfaces/product.interface';
 
 @UntilDestroy()
@@ -12,29 +9,20 @@ import { IProduct } from '../../../core/interfaces/product.interface';
   templateUrl: './average-stars.component.html',
   styleUrls: ['./average-stars.component.scss']
 })
-export class AverageStarsComponent implements OnInit {
+export class AverageStarsComponent implements OnChanges {
   @Input() product!: IProduct;
-  public products: IProduct[] = [];
   public averageStars: { filledCount: number; emptyCount: number } = {
     filledCount: 0,
     emptyCount: 5
   };
 
-  constructor(
-    private store: Store<IAppState>,
-    public starsService: StarsService
-  ) {
+  constructor(public starsService: StarsService) {
   }
 
-  ngOnInit() {
-    this.updateStars();
-
-    this.store
-      .select(selectProducts)
-      .pipe(untilDestroyed(this))
-      .subscribe((products) => {
-        this.products = products;
-      })
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['product'] && changes['product'].currentValue) {
+      this.updateStars();
+    }
   }
 
   updateStars() {
@@ -44,5 +32,4 @@ export class AverageStarsComponent implements OnInit {
       this.averageStars = { filledCount: 0, emptyCount: 5 };
     }
   }
-
 }

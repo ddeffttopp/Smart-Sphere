@@ -1,12 +1,8 @@
 <div class="component">
-  <div class="component-header">
-    <p class="text">Выберите свой город</p>
-    <button
-      class="close"
-      (click)=" this.dialogRef.close()"
-    >
-    </button>
-  </div>
+  <app-dialog-header
+    [component]="'WriteReviewsComponent'"
+    [text]="'Напишите свой отзыв'"
+  ></app-dialog-header>
 
   <div class="component-stars">
     <p class="text">Оцените товар</p>

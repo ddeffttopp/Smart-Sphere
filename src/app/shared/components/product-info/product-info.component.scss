@@ -1,5 +1,4 @@
 @import "src/assets/styles/colors.scss";
-@import "src/assets/styles/normalize.scss";
 
 .product {
   margin-top: 30px;
@@ -100,7 +99,7 @@
                 overflow: hidden;
               }
             }
-            
+
             .active-border {
               border-color: $global-green;
             }

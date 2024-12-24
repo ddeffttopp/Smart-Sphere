@@ -1,0 +1,121 @@
+<div class="product-buying">
+  <app-dialog-header
+    [component]="'ProductBuying'"
+    [text]="'Оформление заказа'"
+  ></app-dialog-header>
+
+  <div class="product-buying-details">
+    <form
+      [formGroup]="formGroup"
+      class="contact"
+      *ngIf="contactDetails else shortContactDetails"
+    >
+      <label
+        class="contact-label"
+        for="tel"
+      > Номер телефона
+        <img
+          class="query-image"
+          src="./assets/icons/query.svg"
+          alt="Query Img"
+          mat-raised-button
+          matTooltip="Веддите ваш номер телефона что бы мы могли вам позвонить."
+          matTooltipPosition="right"
+          [matTooltipClass]="'custom-tooltip'"
+        >
+      </label>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Введите ваш телефон</mat-label>
+        <input
+          id="tel"
+          matInput
+          placeholder="099-999-99-99"
+          formControlName="tel"
+          required
+        >
+        <mat-error *ngIf="formGroup.get('tel')?.invalid">{{ getErrorMessage('tel') }}</mat-error>
+      </mat-form-field>
+
+      <label
+        class="contact-label"
+        for="firstName"
+        style="margin-top: 20px"
+      > Имя
+        <img
+          class="query-image"
+          src="./assets/icons/query.svg"
+          alt="Query Img"
+          mat-raised-button
+          matTooltip="Введите ваше имя."
+          matTooltipPosition="right"
+          [matTooltipClass]="'custom-tooltip'"
+        >
+      </label>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Введите ваше имя</mat-label>
+        <input
+          id="firstName"
+          matInput
+          placeholder="Андрей"
+          formControlName="firstName"
+          required
+        >
+        <mat-error *ngIf="formGroup.get('firstName')?.invalid">{{ getErrorMessage('firstName') }}</mat-error>
+      </mat-form-field>
+
+      <label
+        class="contact-label"
+        for="lastName"
+        style="margin-top: 20px"
+      > Фамилия
+        <img
+          class="query-image"
+          src="./assets/icons/query.svg"
+          alt="Query Img"
+          mat-raised-button
+          matTooltip="Введите вашу фамлию."
+          matTooltipPosition="right"
+          [matTooltipClass]="'custom-tooltip'"
+        >
+      </label>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Введите вашу фамилию</mat-label>
+        <input
+          id="lastName"
+          matInput
+          formControlName="lastName"
+          placeholder="Кондратьев"
+          required
+        >
+        <mat-error *ngIf="formGroup.get('lastName')?.invalid">{{ getErrorMessage('lastName') }}</mat-error>
+      </mat-form-field>
+
+      <p
+        *ngIf="regError"
+        class="text-error"
+      >{{ regError }}</p>
+
+      <button
+        type="submit"
+        class="contact-submit"
+        (click)="submitForm()"
+      >Продолжить
+      </button>
+    </form>
+
+    <ng-template #shortContactDetails>
+      
+    </ng-template>
+
+    <div class="city">
+
+    </div>
+  </div>
+
+  <div class="product-buying-info">
+
+  </div>
+</div>

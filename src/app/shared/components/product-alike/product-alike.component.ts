@@ -30,7 +30,6 @@ export class ProductAlikeComponent {
     this.randomProducts = this.shuffleArray(filteredProducts).slice(0, 5);
   }
 
-  // Функция для перемешивания массива
   shuffleArray(array: IProduct[]): IProduct[] {
     return array;
   }

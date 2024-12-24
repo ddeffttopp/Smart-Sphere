@@ -3,14 +3,15 @@ import { IProduct } from '../../../core/interfaces/product.interface';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../../core/store/state/app.state';
 import { ActivatedRoute } from '@angular/router';
-import { of, switchMap } from 'rxjs';
+import { Observable, of, switchMap, take } from 'rxjs';
 import { selectProductById, selectProducts } from '../../../core/store/selectors/product.selectors';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MatDialog } from '@angular/material/dialog';
 import { WriteReviewsComponent } from '../write-reviews/write-reviews.component';
-import { userInfo } from '../../../core/store/selectors/user.selectors';
+import { isUserLogin, userInfo } from '../../../core/store/selectors/user.selectors';
 import { IUserState } from '../../../core/store/state/user.state';
 import { DeleteComment } from '../../../core/store/actions/product.actions';
+import { AuthService } from '../../services/auth.service';
 
 @UntilDestroy()
 @Component({
@@ -22,11 +23,13 @@ export class ProductReviewsComponent implements OnInit {
   @Output() selectedCard!: IProduct;
   public products: IProduct[] = [];
   public userInfo!: IUserState;
+  isUserLogin$: Observable<boolean> = this.store.select(isUserLogin);
 
   constructor(
     private store: Store<IAppState>,
     private route: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public authService: AuthService
   ) {
   }
 
@@ -59,11 +62,17 @@ export class ProductReviewsComponent implements OnInit {
   }
 
   onToggleWrite() {
-    this.dialog.open(WriteReviewsComponent, {
-      data: {
-        selectedCard: this.selectedCard
+    this.isUserLogin$.pipe(take(1)).subscribe(isUserLogin => {
+      if (isUserLogin) {
+        this.dialog.open(WriteReviewsComponent, {
+          data: {
+            selectedCard: this.selectedCard
+          }
+        });
+      } else {
+        this.authService.loginForm()
       }
-    });
+    })
   }
 
   onToggleDelete(productId: string, commentId: string) {

@@ -1,0 +1,167 @@
+<div class="catalog-filters">
+  <p class="header">Фільтри</p>
+
+  <div class="filter">
+    <div
+      class="filter-header"
+      (click)="toggleFilter(0)"
+    >
+      <p class="text">Категорія</p>
+      <img
+        [src]="filtersOpen[0] ? '/assets/icons/minus.svg' : '/assets/icons/plus.svg'"
+        class="image"
+      >
+    </div>
+    <form
+      [formGroup]="filtersService.categoriesForm"
+      [ngClass]="{'filter-content-open': filtersOpen[0]}"
+      class="filter-content"
+    >
+      <label
+        class="item"
+        *ngFor="let category of filtersService.categories"
+      >
+        <input
+          type="radio"
+          formControlName="selectedCategory"
+          [value]="category.key"
+          (change)="filtersService.onSubmitCategories()"
+        >
+        <span class="checkmark"></span>
+        <span>{{ category.label }}</span>
+      </label>
+    </form>
+  </div>
+
+  <div class="filter">
+    <div
+      class="filter-header"
+      (click)="toggleFilter(1)"
+    >
+      <p class="text">Наявність</p>
+      <img
+        [src]="filtersOpen[1] ? '/assets/icons/minus.svg' : '/assets/icons/plus.svg'"
+        class="image"
+      >
+    </div>
+    <form
+      [formGroup]="filtersService.availabilityForm"
+      [ngClass]="{'filter-content-open': filtersOpen[1]}"
+      class="filter-content"
+    >
+      <label
+        class="item"
+        *ngFor="let category of filtersService.availability"
+      >
+        <input
+          type="radio"
+          formControlName="selectedAvailability"
+          [value]="category.key"
+          (change)="filtersService.onSubmitAvailability()"
+        >
+        <span class="checkmark"></span>
+        <span>{{ category.label }}</span>
+      </label>
+    </form>
+  </div>
+
+  <div class="filter">
+    <div
+      class="filter-header"
+      (click)="toggleFilter(2)"
+    >
+      <p class="text">Колір</p>
+      <img
+        [src]="filtersOpen[2] ? '/assets/icons/minus.svg' : '/assets/icons/plus.svg'"
+        class="image"
+      >
+    </div>
+    <form
+      [formGroup]="filtersService.colorForm"
+      [ngClass]="{'filter-content-open': filtersOpen[2]}"
+      class="filter-content"
+    >
+      <label
+        class="item"
+        *ngFor="let category of filtersService.color"
+      >
+        <input
+          type="radio"
+          formControlName="selectedColor"
+          [value]="category.key"
+          (change)="filtersService.onSubmitColor()"
+        >
+        <span class="checkmark"></span>
+        <span>{{ category.label }}</span>
+      </label>
+    </form>
+  </div>
+
+  <div class="filter">
+    <div
+      class="filter-header"
+      (click)="toggleFilter(3)"
+    >
+      <p class="text">Ціна</p>
+      <img
+        [src]="filtersOpen[3] ? '/assets/icons/minus.svg' : '/assets/icons/plus.svg'"
+        class="image"
+      >
+    </div>
+    <form
+      [formGroup]="filtersService.priceForm"
+      [ngClass]="{'filter-content-open': filtersOpen[3]}"
+      class="filter-content"
+    >
+      <div class="price-text">
+        <div class="text-input">
+          <p>Від</p>
+          <input
+            class="text"
+            [ngClass]="{'text-invalid': !filtersService.isPriceValid}"
+            type="number"
+            formControlName="from"
+            min="0"
+            [max]="filtersService.maxPriceValue"
+            [value]="filtersService.priceForm.get('from')?.value"
+          >
+          <p>До</p>
+          <input
+            class="text"
+            [ngClass]="{'text-invalid': !filtersService.isPriceValid}"
+            type="number"
+            formControlName="to"
+            min="0"
+            [max]="filtersService.maxPriceValue"
+            [value]="filtersService.priceForm.get('to')?.value"
+          >
+        </div>
+        <button
+          class="submit"
+          [disabled]="!filtersService.isPriceValid"
+          [ngClass]="{'submit-inactive': !filtersService.isPriceValid}"
+          (click)="filtersService.onSubmitPrice()"
+        >OK
+        </button>
+      </div>
+
+      <mat-slider
+        class="price-slider"
+        min="0" [max]="filtersService.maxPriceValue"
+      >
+        <input
+          formControlName="from"
+          thumbLabel
+          [value]="filtersService.priceForm.get('from')?.value"
+          matSliderStartThumb
+        >
+        <input
+          formControlName="to"
+          thumbLabel
+          [value]="filtersService.priceForm.get('to')?.value"
+          matSliderEndThumb
+        >
+      </mat-slider>
+    </form>
+  </div>
+</div>

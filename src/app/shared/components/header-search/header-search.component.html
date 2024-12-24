@@ -48,7 +48,7 @@
 
 <div
   class="blur-overlay"
-  (click)="showProductList = false; isInputActive = false"
+  (click)="showProductList = false"
   *ngIf="showProductList && searchProducts.length"
   [ngClass]="{ 'blur-overlay-visible': showProductList && searchProducts.length }"
 ></div>

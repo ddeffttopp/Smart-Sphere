@@ -23,10 +23,16 @@ register();
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
-    SharedModule,
+    SharedModule
   ],
   bootstrap: [AppComponent],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ]
 })
 export class AppModule {
 }

@@ -1,15 +1,8 @@
 <div class="reg-container">
-  <div class="reg-container-header">
-
-    <p class="reg-container-header-text">Регистрация</p>
-
-    <button
-      class="reg-container-header-close"
-      (click)="onCloseRegister()"
-    >
-    </button>
-
-  </div>
+  <app-dialog-header
+    [component]="'RegComponent'"
+    [text]="'Регистрация'"
+  ></app-dialog-header>
 
   <form
     [formGroup]="formGroup"

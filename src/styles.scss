@@ -2,6 +2,11 @@
 @import "assets/styles/normalize.scss";
 @import "assets/styles/colors.scss";
 
+html {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
 body.sidebar-visible {
   overflow: hidden;
 }
@@ -42,4 +47,12 @@ html, body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-drawer-content {
+  overflow: visible !important;
+}
+
+.mat-drawer-container {
+  overflow: visible !important;
 }

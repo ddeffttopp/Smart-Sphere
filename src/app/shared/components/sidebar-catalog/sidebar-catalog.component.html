@@ -1,7 +1,34 @@
 <div class="catalog-sidebar">
-  <button class="catalog-sidebar-categories">Ноутбуки</button>
-  <button class="catalog-sidebar-categories">Компьютеры</button>
-  <button class="catalog-sidebar-categories">Телевизоры</button>
-  <button class="catalog-sidebar-categories">Планшеты</button>
-  <button class="catalog-sidebar-categories">Стиралки</button>
+  <a
+    class="catalog-sidebar-categories"
+    routerLink="/catalogPage"
+    (click)="selectCategories('laptop')"
+  >
+    <img src="/assets/icons/laptop.svg" alt="Laptop Img">
+    Ноутбуки
+  </a>
+  <a
+    class="catalog-sidebar-categories"
+    routerLink="/catalogPage"
+    (click)="selectCategories('computer')"
+  >
+    <img src="/assets/icons/computer.svg" alt="Computer Img">
+    Компьютеры
+  </a>
+  <a
+    class="catalog-sidebar-categories"
+    routerLink="/catalogPage"
+    (click)="selectCategories('tablet')"
+  >
+    <img src="/assets/icons/tablet.svg" alt="Tablet Img">
+    Планшеты
+  </a>
+  <a
+    class="catalog-sidebar-categories"
+    routerLink="/catalogPage"
+    (click)="selectCategories('tv')"
+  >
+    <img src="/assets/icons/tv.svg" alt="Tv Img">
+    Телевизоры
+  </a>
 </div>

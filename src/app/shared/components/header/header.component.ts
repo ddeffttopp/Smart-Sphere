@@ -36,7 +36,9 @@ export class HeaderComponent implements OnInit {
     this.basketService.basketItemsArray.subscribe(items => this.basketCount = items.length);
     this.store.select(userInfo).pipe(untilDestroyed(this)).subscribe(user => {
       this.userInfo = user
-      this.backgroundColor = this.authService.generateColor(user.name[0]);
+      if (user?.name) {
+        this.backgroundColor = this.authService.generateColor(user.name[0]);
+      }
     });
   }
 }

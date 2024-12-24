@@ -27,10 +27,6 @@ export class ProductInfoComponent implements OnInit {
   public selectedCard!: IProduct;
   public products: IProduct[] = [];
   imageUrl = `${environments.apiUrl}${environments.imageUrl}`;
-  public averageStars: { filledCount: number; emptyCount: number } = {
-    filledCount: 0,
-    emptyCount: 5
-  };
   commentsCount = 0;
   commentsText = '';
   isLiked = false;
@@ -45,7 +41,7 @@ export class ProductInfoComponent implements OnInit {
     public starsService: StarsService,
     private likeService: LikeService,
     public dialog: MatDialog,
-    public cityService: CityService,
+    public cityService: CityService
   ) {
     this.route.parent?.paramMap.pipe(
       switchMap(params => {
@@ -63,7 +59,6 @@ export class ProductInfoComponent implements OnInit {
 
       this.commentsCount = this.selectedCard?.comments.length || 0;
       this.commentsText = this.starsService.getReviewWord(this.commentsCount);
-      this.updateStars();
     });
   }
 
@@ -71,14 +66,6 @@ export class ProductInfoComponent implements OnInit {
     this.store.select(selectProducts).pipe(untilDestroyed(this)).subscribe((products) => {
       this.products = products;
     })
-  }
-
-  updateStars() {
-    if (this.selectedCard && this.selectedCard.comments) {
-      this.averageStars = this.starsService.calculateAverageStars(this.selectedCard.comments);
-    } else {
-      this.averageStars = { filledCount: 0, emptyCount: 5 };
-    }
   }
 
   toggleLike(event: Event) {

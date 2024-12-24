@@ -16,10 +16,11 @@
       </div>
 
       <p class="product-name">{{ product.name }}</p>
+      <div class="product-buying">
+        <app-average-stars [product]="product"></app-average-stars>
 
-      <app-average-stars [product]="product"></app-average-stars>
-
-      <p class="product-price">{{ product.price.toLocaleString('ru-RU') }} ₴</p>
+        <p class="price">{{ product.price.toLocaleString('ru-RU') }} ₴</p>
+      </div>
     </div>
   </div>
 </div>

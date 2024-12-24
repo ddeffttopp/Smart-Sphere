@@ -17,9 +17,11 @@ export class SidebarComponent implements OnInit {
   isUserLogin$: Observable<boolean> = this.store.select(isUserLogin);
   @Output() toggleSidenav = new EventEmitter<unknown>();
   showCatalog = false;
-  isMouseOverCatalog = false;
+  mouseCatalog = false;
+  mouseCatalogTrigger = false;
   userInfo!: IUserState;
   backgroundColor: string = '';
+  hoverTimeout: any;
 
   constructor(
     private store: Store<IAppState>,
@@ -33,34 +35,45 @@ export class SidebarComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe(user => {
         this.userInfo = user
-        this.backgroundColor = this.authService.generateColor(user.name[0]);
+        if (user?.name) {
+          this.backgroundColor = this.authService.generateColor(user.name[0]);
+        }
       });
-
-
   }
 
   onMouseEnter() {
     this.showCatalog = true;
+    this.mouseCatalog = true;
+
+    if (this.hoverTimeout) {
+      clearTimeout(this.hoverTimeout);
+    }
   }
 
   onMouseLeave() {
-    setTimeout(() => {
-      if (!this.isMouseOverCatalog) {
-        this.showCatalog = false;
-      }
-    }, 500);
+    this.mouseCatalog = false;
+    this.startHideTimeout();
   }
 
   onCatalogMouseEnter() {
-    this.isMouseOverCatalog = true;
+    this.mouseCatalogTrigger = true;
+    this.showCatalog = true;
+
+    if (this.hoverTimeout) {
+      clearTimeout(this.hoverTimeout);
+    }
   }
 
   onCatalogMouseLeave() {
-    this.isMouseOverCatalog = false;
-    setTimeout(() => {
-      if (!this.isMouseOverCatalog) {
+    this.mouseCatalogTrigger = false;
+    this.startHideTimeout();
+  }
+
+  startHideTimeout() {
+    this.hoverTimeout = setTimeout(() => {
+      if (!this.mouseCatalog && !this.mouseCatalogTrigger) {
         this.showCatalog = false;
       }
-    }, 500);
+    }, 300);
   }
 }

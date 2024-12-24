@@ -9,13 +9,17 @@ import {
   ProductCharacteristicsComponent
 } from "../shared/components/product-characteristics/product-characteristics.component";
 import { ProductBasketComponent } from './product-basket/product-basket.component';
+import { CatalogPageComponent } from './catalog-page/catalog-page.component';
 import { ProductResolver } from '../shared/resolvers/product.resolver';
+import { BuyingPageComponent } from './buying-page/buying-page.component';
 
 enum MainRoutingPaths {
   Main = '',
   ProductPage = 'productPage/:id',
   HomePage = 'homePage',
-  ProductBasket = 'productBasket'
+  ProductBasket = 'productBasket',
+  CatalogPage = 'catalogPage',
+  BuyingPage = 'buyingPage',
 }
 
 const routes: Routes = [
@@ -31,6 +35,10 @@ const routes: Routes = [
       {
         path: MainRoutingPaths.HomePage,
         component: HomePageComponent
+      },
+      {
+        path: MainRoutingPaths.CatalogPage,
+        component: CatalogPageComponent
       },
       {
         path: MainRoutingPaths.ProductPage,
@@ -59,6 +67,10 @@ const routes: Routes = [
       {
         path: MainRoutingPaths.ProductBasket,
         component: ProductBasketComponent,
+      },
+      {
+        path: MainRoutingPaths.BuyingPage,
+        component: BuyingPageComponent,
       }
     ]
   },
