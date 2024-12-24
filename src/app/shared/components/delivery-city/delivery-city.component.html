@@ -1,13 +1,9 @@
 <div class="component">
 
-  <div class="component-header">
-    <p class="text">Выберите свой город</p>
-    <button
-      class="close"
-      (click)="dialogRef.close()"
-    >
-    </button>
-  </div>
+  <app-dialog-header
+    [component]="'DeliveryCityComponent'"
+    [text]="'Выберите свой город'"
+  ></app-dialog-header>
 
   <p class="component-intro">
     <img
@@ -65,7 +61,7 @@
     <button
       class="home-page"
       routerLink=""
-      (click)="this.dialogRef.close()"
+      (click)="dialogRef.close()"
     >Перейти на главную
     </button>
     <button

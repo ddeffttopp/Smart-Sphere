@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { catchError, map, Observable, of, switchMap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap, take } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectProductById } from '../../core/store/selectors/product.selectors';
 import { GetSingleProduct } from '../../core/store/actions/product.actions';
@@ -24,10 +24,11 @@ export class ProductResolver implements Resolve<any> {
     }
 
     return this.store.select(selectProductById(productId)).pipe(
+      take(1),
       switchMap(productInStore => {
-        if (productInStore)
+        if (productInStore) {
           return of(productInStore);
-        else {
+        } else {
           return this.productService.getProducts({ filter: `id:${productId}` }).pipe(
             map((response: any) => {
               const product = response[0];

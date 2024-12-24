@@ -1,0 +1,74 @@
+<div class="catalog">
+  <div class="catalog-header">
+    <p class="catalog-header-text">Каталог</p>
+    <div
+      class="catalog-header-select"
+      (click)="isDropdownOpen = !isDropdownOpen"
+    >
+      <div class="selected-option">
+        <span>{{ selectedSortOption || 'Виберіть опцію' }}</span>
+        <img
+          src="/assets/icons/arrow.svg"
+          alt="Arrow"
+          class="arrow-icon"
+          [ngClass]="{'arrow-icon-open': isDropdownOpen}"
+        />
+      </div>
+      <ul
+        class="options-list"
+        [ngClass]="{'options-list-open': isDropdownOpen}"
+      >
+        <li (click)="selectOption('Спочатку дешевші'); $event.stopPropagation()">Спочатку дешевші</li>
+        <li (click)="selectOption('Спочатку дорожчі'); $event.stopPropagation()">Спочатку дорожчі</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="catalog-content">
+    <app-catalog-filters></app-catalog-filters>
+
+    <div *ngIf="products.length === 0 && !isLoading" class="empty">
+      <p class="empty-text">Товарів за вашим закликом не знайдено</p>
+      <button
+        class="empty-button"
+        (click)="filtersService.resetFilters()"
+      >Скинути
+      </button>
+    </div>
+
+    <div *ngIf="isLoading" class="loading">
+      <img
+        src="/assets/icons/load.svg"
+        alt="Loading"
+        class="loading-icon"
+      >
+      <p class="loading-text">Загрузка товаров...</p>
+    </div>
+
+    <div *ngIf="!isLoading && products.length > 0" class="catalog-content-products">
+
+      <div class="products-grid">
+        <app-product-card
+          *ngFor="let product of products.slice(0, productCount)"
+          [card]="product"
+          class="product"
+        >
+        </app-product-card>
+      </div>
+
+      <button
+        class="load"
+        (click)="productCount = productCount + 3"
+        *ngIf="canLoadMore"
+      >
+        <img
+          src="/assets/icons/load.svg"
+          alt="Load Icon"
+        >
+        Показати ще
+      </button>
+    </div>
+  </div>
+
+</div>

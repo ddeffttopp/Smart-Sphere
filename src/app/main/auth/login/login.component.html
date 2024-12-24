@@ -1,13 +1,9 @@
 <div class="log-container">
 
-  <div class="log-container-header">
-    <p class="log-container-header-text">Вход</p>
-    <button
-      class="log-container-header-close"
-      (click)="onCloseLogin()"
-    >
-    </button>
-  </div>
+  <app-dialog-header
+    [component]="'LoginComponent'"
+    [text]="'Вход'"
+  ></app-dialog-header>
 
   <form
     [formGroup]="formGroup"

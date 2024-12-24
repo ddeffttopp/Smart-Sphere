@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -29,6 +29,13 @@ import { StarsComponent } from './components/stars/stars.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { WriteReviewsComponent } from './components/write-reviews/write-reviews.component';
 import { HeaderSearchComponent } from './components/header-search/header-search.component';
+import { CatalogFiltersComponent } from './components/catalog-filters/catalog-filters.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { ProductBuyingComponent } from './components/product-buying/product-buying.component';
+import { DialogHeaderComponent } from './components/dialog-header/dialog-header.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatStepperModule } from '@angular/material/stepper';
+import { BuyingDetailsComponent } from './components/buying-details/buying-details.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +54,10 @@ import { HeaderSearchComponent } from './components/header-search/header-search.
     StarsComponent,
     WriteReviewsComponent,
     HeaderSearchComponent,
+    CatalogFiltersComponent,
+    ProductBuyingComponent,
+    DialogHeaderComponent,
+    BuyingDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -62,7 +73,11 @@ import { HeaderSearchComponent } from './components/header-search/header-search.
     MatMenuModule,
     MatInputModule,
     ReactiveFormsModule,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    NgOptimizedImage,
+    MatSliderModule,
+    MatTooltipModule,
+    MatStepperModule
   ],
   exports: [
     HeaderComponent,
@@ -74,7 +89,9 @@ import { HeaderSearchComponent } from './components/header-search/header-search.
     DeliveryItemComponent,
     ProductAlikeComponent,
     StarsComponent,
-    AverageStarsComponent
+    AverageStarsComponent,
+    CatalogFiltersComponent,
+    DialogHeaderComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [AuthService]

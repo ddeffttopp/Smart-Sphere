@@ -1,42 +1,9 @@
 @import "src/assets/styles/colors.scss";
 
 .component {
-  display: flex;
-  flex-direction: column;
+  width: 450px;
   padding: 30px 30px 40px;
   border-radius: 10px;
-  width: 450px;
-
-  &-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid $global-black-10;
-    margin-left: -25px;
-    margin-right: -25px;
-    padding: 0 25px 10px;
-
-    .text {
-      font-size: 18px;
-      font-weight: bold;
-      line-height: 1;
-    }
-
-    .close {
-      width: 25px;
-      height: 25px;
-      border: none;
-      mask-image: url("/assets/icons/close.svg");
-      mask-position: center;
-      mask-size: contain;
-      mask-repeat: no-repeat;
-      background-color: gray;
-
-      &:hover {
-        background-color: #f84147;
-      }
-    }
-  }
 
   &-stars {
     display: flex;

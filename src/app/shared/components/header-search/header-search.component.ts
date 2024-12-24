@@ -15,7 +15,6 @@ import { environments } from '../../../../environments';
 export class HeaderSearchComponent implements OnInit {
   searchFormControl = new FormControl('');
   showProductList: boolean = false;
-  isInputActive: boolean = false;
   searchProducts: IProduct[] = [];
   imageUrl = `${environments.apiUrl}${environments.imageUrl}`;
 
@@ -28,7 +27,7 @@ export class HeaderSearchComponent implements OnInit {
         untilDestroyed(this),
         debounceTime(500),
         switchMap((value) => {
-          if (this.isInputActive && value !== null) {
+          if (value !== null) {
             const trimmedValue = value.trim();
             return trimmedValue !== '' ? this.productService.getProducts({ filter: `name:${trimmedValue}` }) : of([]);
           }
@@ -36,13 +35,12 @@ export class HeaderSearchComponent implements OnInit {
         })
       )
       .subscribe((res: any) => {
-        this.searchProducts = res.length > 0 ? res[0] : [];
+        this.searchProducts = res.length > 0 ? res[0].slice(0, 5) : [];
       });
   }
 
 
   onFocusInput() {
-    this.isInputActive = true;
     this.showProductList = true;
   }
 

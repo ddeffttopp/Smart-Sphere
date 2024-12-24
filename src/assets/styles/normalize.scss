@@ -69,7 +69,6 @@ main {
     display: flex;
     align-items: center;
     gap: 3px;
-    text-decoration: none;
     margin-left: 5px;
     font-size: 16px;
     line-height: 1;
@@ -137,6 +136,7 @@ pre {
  */
 
 a {
+  text-decoration: none;
   background-color: transparent;
 }
 

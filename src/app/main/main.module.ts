@@ -14,6 +14,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ProductBasketComponent } from './product-basket/product-basket.component';
+import { CatalogPageComponent } from './catalog-page/catalog-page.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { BuyingPageComponent } from './buying-page/buying-page.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -24,6 +28,8 @@ import { ProductBasketComponent } from './product-basket/product-basket.componen
     HomePageComponent,
     ProductInfoComponent,
     ProductBasketComponent,
+    CatalogPageComponent,
+    BuyingPageComponent,
   ],
   exports: [
     LoginComponent
@@ -37,7 +43,9 @@ import { ProductBasketComponent } from './product-basket/product-basket.componen
     ReactiveFormsModule,
     MatTooltipModule,
     MatInputModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSliderModule,
+    MatStepperModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
